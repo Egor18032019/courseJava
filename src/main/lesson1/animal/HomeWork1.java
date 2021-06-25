@@ -1,5 +1,7 @@
 package main.lesson1.animal;
 
+import com.sun.corba.se.impl.oa.toa.TOA;
+
 public class HomeWork1 {
     public static void main(String[] args) {
         Animal[] animals = {
@@ -15,26 +17,10 @@ public class HomeWork1 {
     }
 
     static void forForEach(Animal[] array, int dist, int swimDist) {
-        int cats = 0;
-        int dogs = 0;
-        int tigers = 0;
-        int barrans = 0;
 
         for (Animal i : array) {
             i.run(dist);
             i.canSwim(swimDist);
-            if (i instanceof Cat) {
-                cats++;
-            }
-            if (i instanceof Dog) {
-                dogs++;
-            }
-            if (i instanceof Tiger) {
-                tigers++;
-            }
-            if (i instanceof Baran) {
-                barrans++;
-            }
             Class exClass = i.getClass();
 //            System.out.println("exClass " + exClass);
             if (exClass.toString().endsWith("Dog")){
@@ -47,12 +33,18 @@ public class HomeWork1 {
             }  else if(exClass.toString().endsWith("Baran")){
                 System.out.println("+ баран");
             }
-
         }
-        System.out.println("В гонки приняло участие" + array.length);
-        System.out.println("Котов " + cats);
-        System.out.println("Собак " + dogs);
-        System.out.println("Тигров " + tigers);
-        System.out.println("Баранов " + barrans);
+
+        if (array.length==Animal.count){
+            System.out.println("В гонки приняло участие: " + array.length);
+        }
+        else {
+            System.out.println("Что то пошло не так");
+        }
+
+        System.out.println("Котов " + Cat.count);
+        System.out.println("Собак " + Dog.count);
+        System.out.println("Тигров " + Tiger.count);
+        System.out.println("Баранов " + Baran.count);
     }
 }

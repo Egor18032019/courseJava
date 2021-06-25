@@ -1,34 +1,56 @@
 package main.lesson1.animal;
 
 public abstract class Animal {
+    public static int count;
+    protected String type;
     protected String name;
     String color;
     int age;
     int maxDist;
-    int isSwim =5;
+    int isSwim;
+
+    public Animal(String type, String name, String color, int age, int maxDist, int isSwim) {
+        this.name = name;
+        this.color = color;
+        this.age = age;
+        this.maxDist = maxDist;
+        this.isSwim = isSwim;
+        count++;
+    }
+
     public final void info() {
         System.out.println(name + " " + color + " " + age);
     }
 
     public void run(int distention) {
-        if (maxDist > distention) {
+        if (distention < 0) {
+            throw new IllegalArgumentException("Задайте дистанцию больше нуля..");
+        }
+        if (maxDist >= distention || distention > 0) {
             System.out.println(name + " пробежал " + distention + " м");
+        } else {
+            System.out.println(name + "не смог пробежать " + distention + " м");
         }
     }
-    public void canSwim(int swimming){
-        if(isSwim==0){
-            System.out.println(name + " неплавает");
+
+    public void canSwim(int swimming) {
+        if (swimming < 0) {
+            throw new IllegalArgumentException("Задайте дистанцию больше нуля..");
         }
-        else {
-            if (isSwim>=swimming){
+        if (isSwim == 0) {
+            System.out.println(name + " неплавает");
+            return; // что бы дальше не пошел
+        } else {
+            if (isSwim >= swimming) {
                 System.out.println(name + " проплыл " + swimming + " м");
-            }
-            else
-            {
+            } else {
                 System.out.println(name + " не смог проплыть " + swimming + " м");
             }
         }
-    };
+    }
+
+    ;
+
     public abstract void voice();
 
     public void fullInfo() {
