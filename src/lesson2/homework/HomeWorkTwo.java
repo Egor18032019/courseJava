@@ -8,6 +8,9 @@ public class HomeWorkTwo {
                  if (i.getCanNextAction()) {
                     i.startAction(barrier);
                 }
+//                 if (!i.startAction(barrier)){
+//                     break;
+//                 } или так
             }
         }
     }

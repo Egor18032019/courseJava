@@ -10,10 +10,14 @@ public class Activity {
     }
 
     public boolean action(int maxJump) {
-        if (maxJump >= heightWall) {
+        if (heightWall<0 ){
+            System.out.println("Так мало");
             return true;
-        } else {
+        }
+        if (maxJump<0){
+            System.out.println("Как так ?");
             return false;
         }
+        return maxJump >= heightWall;
     }
 }
