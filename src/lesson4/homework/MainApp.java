@@ -5,7 +5,6 @@ import com.sun.org.apache.xpath.internal.operations.Or;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -22,15 +21,17 @@ public class MainApp {
         Box boxFruit = new Box();
         Box forAppleBox = new Box();
         Box forOrangeBox = new Box();
-        forAppleBox.addFuit(appleForBox);
-        forOrangeBox.addFuit(orangeForBox);
-        forOrangeBox.addFuit(orangeForBox);
-        System.out.println("forAppleBox = " + forAppleBox.type);
-        System.out.println("forAppleBox.weight = " + forAppleBox.weight);
-        System.out.println("forOrangeBox.weight = " + forOrangeBox.weight);
-        System.out.println("orangeForBox = " + forOrangeBox.aList);
-        intoBox(boxFruit,forOrangeBox);
-        System.out.println("args = " + forOrangeBox.getList());
+
+        System.out.println("forAppleBox.weight = " + forAppleBox.getWeight());
+        System.out.println("forOrangeBox.weight = " + forOrangeBox.getWeight());
+        System.out.println("orangeForBox = " + forOrangeBox.getList());
+        sortBox(forAppleBox, forOrangeBox);
+        System.out.println("forOrangeBox = " + forOrangeBox.getList());
+        System.out.println("forAppleBox.weight = " + forAppleBox.getWeight());
+        System.out.println("forOrangeBox.weight = " + forOrangeBox.getWeight());
+        intoBox(boxFruit, forOrangeBox);
+        System.out.println("forOrangeBox.weight = " + forOrangeBox.getWeight());
+
     }
 
     public static void swapIt(Object[] arr, int first, int end) {
@@ -44,11 +45,10 @@ public class MainApp {
     }
 
     public static <Y> ArrayList<Y> arrInList1(Y[] arr) {
-        ArrayList<Y> alist = new ArrayList<>(100);
+        ArrayList<Y> alist = new ArrayList<>(arr.length);
         for (int i = 0; i < arr.length; i++) {
             alist.add(arr[i]);
         }
-        System.out.println("arrInList1" + alist.getClass());
         return alist;
     }
 
@@ -64,11 +64,30 @@ public class MainApp {
     }
 
     public static void intoBox(Box firstBox, Box secondBox) {
+        // сделать проверку на то что вдруг это одна и таже коробка
+        if (firstBox==secondBox){
+            return;
+        }
         if (firstBox.compareType(secondBox)) {
-            while (secondBox.aList.size()>0){
-                firstBox.aList.add(secondBox.aList.get(0));
-                secondBox.aList.remove(0);
+            while (secondBox.getList().size() > 0) {
+                firstBox.addFuit(secondBox.getList().get(0));
+                secondBox.removeInBox(0);
             }
+        }
+    }
+
+    public static void sortBox (Box fBox, Box sBox){
+        // сделать проверку на то что вдруг это одна и таже коробка
+        if (fBox==sBox){
+            return;
+        }
+         for(int i =0;i<3 ; i++){
+             int x =(int)(Math.random()*100);
+              Apple appleForBox = new Apple(x);
+             int y =(int)(Math.random()*100);
+             Orange orangeForBox = new Orange(y);
+             fBox.addFuit(appleForBox);
+             sBox.addFuit(orangeForBox);
         }
     }
 }
