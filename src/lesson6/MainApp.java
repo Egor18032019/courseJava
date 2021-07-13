@@ -10,7 +10,8 @@ public class MainApp {
         float[] arr = new float[SIZE];
         for (int i = 0; i < SIZE; ++i) {
             arr[i] = 1;
-        }
+        };
+//        Arrays.fill(arr,2.0f); можно было так
         long startTime = System.currentTimeMillis();
         System.out.println("calculations time calculationsComplex = " + calculationsComplex(startTime, arr));
         long start = System.currentTimeMillis();
@@ -50,9 +51,11 @@ public class MainApp {
         Thread secondThread = new Thread(new Runnable() {
             @Override
             public void run() {
+                int j = HALF; // если так не сделать то массив будет заполняться одинаковыми значениями
                 for (int i = 0; i < HALF; ++i) {
-                    destArr2[i] = (float) (destArr2[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) *
-                            Math.cos(0.4f + i / 2));
+                    destArr2[i] = (float) (destArr2[i] * Math.sin(0.2f + j / 5) * Math.cos(0.2f + j / 5) *
+                            Math.cos(0.4f + j / 2));
+                    j=j+1;
                 }
             }
 
