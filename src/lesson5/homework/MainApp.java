@@ -27,8 +27,8 @@ public class MainApp {
         PhoneBookForHashMap myPhoneBook = new PhoneBookForHashMap();
         myPhoneBook.add("ndddame","1");
         myPhoneBook.add("ndddame","124");
-        myPhoneBook.add("ndddame","123");
-        System.out.println(myPhoneBook.getForSurnamePhoneNumbers("ndddame"));
+        myPhoneBook.add("NameHere","123");
+        myPhoneBook.seeHashMap();
     }
 
     public static int getUnArr(String[] arr) {
