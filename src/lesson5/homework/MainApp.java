@@ -1,6 +1,7 @@
 package lesson5.homework;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -36,7 +37,7 @@ public class MainApp {
         return setArr.size();
     }
 
-    ;
+
 
     public static Map<String, Integer> getCountWords(String[] arr) {
         Map<String, Integer> mapForwords = new HashMap<>();
@@ -48,6 +49,7 @@ public class MainApp {
                 mapForwords.put(it,mapForwords.get(it)+1);
             }
         }
+
 
         return mapForwords;
     }
